@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
     linktext:{
         marginLeft: 15,
         //marginTop: 5,
-        color: 'blue'
+        color: 'blue',
+        textAlign:'center'
     }
 });
 

@@ -12,20 +12,19 @@ const SigninScreen = ( { navigation } ) => {
     return (
         <SafeAreaProvider>
         <View style={styles.container}>
-            
             <NavigationEvents 
                 onWillBlur={ clearErrorMessage }
             />
             <AuthForm
-                headerText = "Helix CRM Sign In"
+                headerText = "Sign In"
                 errorMessage = {state.errorMessage}
                 submitButtonText = "Sign in"
                 onSubmit={signin}
             />
             <NavLink
                 routeName="Signup"
-                text="Dont have an account? Sign up instead!"/>
-
+                text="Dont have an account? Sign up instead!"
+                />
         </View>
         </SafeAreaProvider>
     );
@@ -41,10 +40,11 @@ SigninScreen.navigationOptions = () => {
 const styles =  StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center'
-        // ,
+        justifyContent: 'center',
+        paddingVertical: 10,
+        paddingHorizontal: 5,
         // marginBottom: 250
-    }
+    },
 });
 
 export default SigninScreen;

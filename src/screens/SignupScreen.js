@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet,  } from 'react-native';
+import { View, StyleSheet, } from 'react-native';
 import AuthForm from '../components/AuthForm';
 import NavLink from '../components/NavLink';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -11,23 +11,25 @@ const SignupScreen = ({ navigation }) => {
     const { state, signup, clearErrorMessage } = useContext(AuthContext);
 
     return (
-        <View style={styles.container}> 
-            <SafeAreaProvider>
-                <NavigationEvents 
-                    onWillBlur={ clearErrorMessage }
+
+        <SafeAreaProvider>
+            <View style={styles.container}>
+                <NavigationEvents
+                    onWillBlur={clearErrorMessage}
                 />
                 <AuthForm
-                    headerText = "Helix CRM Sign Up"
-                    errorMessage = {state.errorMessage}
-                    submitButtonText = "Sign up"
+                    headerText="Sign Up"
+                    errorMessage={state.errorMessage}
+                    submitButtonText="Sign up"
                     onSubmit={signup}
                 />
                 <NavLink
                     routeName="Signin"
                     text="Already have an account? Sign in instead!"
                 />
-            </SafeAreaProvider>
-        </View>
+            </View>
+        </SafeAreaProvider>
+
     );
 };
 
@@ -37,10 +39,12 @@ SignupScreen.navigationOptions = () => {
     }
 }
 
-const styles =  StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingVertical: 10,
+        paddingHorizontal: 5,
         // ,
         // marginBottom: 250
     }

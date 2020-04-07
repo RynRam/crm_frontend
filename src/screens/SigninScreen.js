@@ -10,9 +10,9 @@ const SigninScreen = ( { navigation } ) => {
     const { state, signin, clearErrorMessage, tryLocalSignin } = useContext(AuthContext);
 
     return (
-        
+        <SafeAreaProvider>
         <View style={styles.container}>
-            <SafeAreaProvider>
+            
             <NavigationEvents 
                 onWillBlur={ clearErrorMessage }
             />
@@ -25,8 +25,9 @@ const SigninScreen = ( { navigation } ) => {
             <NavLink
                 routeName="Signup"
                 text="Dont have an account? Sign up instead!"/>
-                </SafeAreaProvider>
+
         </View>
+        </SafeAreaProvider>
     );
 };
 

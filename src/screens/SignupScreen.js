@@ -17,7 +17,7 @@ const SignupScreen = ({ navigation }) => {
                     onWillBlur={ clearErrorMessage }
                 />
                 <AuthForm
-                    headerText = "CRM Sign Up"
+                    headerText = "Helix CRM Sign Up"
                     errorMessage = {state.errorMessage}
                     submitButtonText = "Sign up"
                     onSubmit={signup}

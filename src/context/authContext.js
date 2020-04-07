@@ -3,6 +3,7 @@ import createDataContext from './createDataContext';
 import trackerApi from '../api/tracker';
 import { navigate } from '../navigationRef';
 
+
 const authReducer = (state, action) => {
     switch(action.type){
         case 'add_error':
@@ -33,30 +34,33 @@ const clearErrorMessage = dispatch => () => {
 };
 
 
-const signup = dispatch =>  async ({ email, password }, callback) => {
+const signup = dispatch => async ({ ip, database, email, password }, callback) => {
     try{
-        const response = await trackerApi.post('/signup', {email, password});
-        await AsyncStorage.setItem('token', response.data.token);
-        dispatch({ type: 'signin', payload: response.data.token });
-        // await AsyncStorage.getItem('token');
-        // console.log(response.data);
-        // if(callback){
-        //     callback();
-        // }
+        const response = await trackerApi.post('/signup', { ip, database, email, password});
+        if(response){
+            await AsyncStorage.setItem('token', response.data.token);
+            dispatch({ type: 'signin', payload: response.data.token });
+            // await AsyncStorage.getItem('token');
+            // console.log(response.data);
+            // if(callback){
+            //     callback();
+            // }
+        }
         navigate('TrackList');
     }catch(err){
         dispatch({ type: 'add_error', payload: 'Something went wrong with sign up' })
-        
-        //console.log(err.response.data);
     }
 };
 
-const signin = dispatch =>  async ({ email, password }, callback) => {
+const signin = dispatch =>  async ({ ip, database, email, password }, callback) => {
     try{
-        const response = await trackerApi.post('/signin', {email, password});
-        await AsyncStorage.setItem('token', response.data.token);
-        dispatch({ type: 'signin', payload: response.data.token });
-        navigate('TrackList');
+        const response = await trackerApi.post('/signin', { ip, database, email, password});
+        if(response){
+            console.log(response.data.token);
+            await AsyncStorage.setItem('token', response.data.token);
+            dispatch({ type: 'signin', payload: response.data.token });
+            navigate('TrackList');
+        }
     }catch(err){
         console.log(err.response.data);
         dispatch({ type: 'add_error', payload: 'Something went wrong with sign in' })

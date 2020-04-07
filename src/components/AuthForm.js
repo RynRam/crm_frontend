@@ -5,8 +5,8 @@ import Spacer from '../components/Spacer';
 
 
 const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
-    const [ipadd, setIpAdd] = useState('');
-    const [dtbase, setDtbase] = useState('');
+    const [ip, setIp] = useState('');
+    const [database, setDatabase] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
@@ -19,15 +19,15 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
                 placeholder="IP Address" 
                 autoCapitalize="none"
                 autoCorrect={false}
-                value={ipadd} 
-                onChangeText={setIpAdd}/>
+                value={ip} 
+                onChangeText={setIp}/>
             <Spacer/>
             <Input label="Database" 
                 placeholder="Database" 
                 autoCapitalize="none"
                 autoCorrect={false}
-                value={dtbase} 
-                onChangeText={setDtbase}/>
+                value={database} 
+                onChangeText={setDatabase}/>
             <Spacer/>
             <Input label="Email" 
                 placeholder="Email" 
@@ -45,7 +45,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
                 onChangeText={setPassword}/>
             { errorMessage ?  <Text style={styles.errorMessage}>{errorMessage}</Text> : null}
             <Spacer>
-                <Button title={submitButtonText} onPress={() => onSubmit({ email, password })}/>
+                <Button title={submitButtonText} onPress={() => onSubmit({ ip, database,  email, password })}/>
             </Spacer>
         </>
    );

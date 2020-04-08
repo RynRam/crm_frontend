@@ -23,7 +23,7 @@ const tryLocalSignin = dispatch => async () => {
     const token = await AsyncStorage.getItem('token');
     if(token){
         dispatch({ type: 'signin', payload: token});
-        navigate('SubAccountIndex');
+        navigate('MainS');
     }else{
         navigate('Signin');
     }
@@ -46,7 +46,7 @@ const signup = dispatch => async ({ ip, database, email, password }, callback) =
             //     callback();
             // }
         }
-        navigate('SubAccountIndex');
+        navigate('MainS');
     }catch(err){
         dispatch({ type: 'add_error', payload: 'Something went wrong with sign up' })
     }
@@ -56,10 +56,9 @@ const signin = dispatch =>  async ({ ip, database, email, password }, callback) 
     try{
         const response = await trackerApi.post('/signin', { ip, database, email, password});
         if(response){
-            console.log(response.data.token);
             await AsyncStorage.setItem('token', response.data.token);
             dispatch({ type: 'signin', payload: response.data.token });
-            navigate('SubAccountIndex');
+            navigate('MainS');
         }
     }catch(err){
         console.log(err.response.data);
@@ -70,7 +69,7 @@ const signin = dispatch =>  async ({ ip, database, email, password }, callback) 
 const signout = (dispatch) => async  ({ email, password }) => {
     await AsyncStorage.removeItem('token');
     dispatch({ type: 'signout'});
-    navigate('loginFlow');
+    navigate('Signin');
 };
 
 

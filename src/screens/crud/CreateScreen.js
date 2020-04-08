@@ -6,7 +6,7 @@ const CreateScreen  = ({navigation}) => {
 
     const { addSubAccount } = useContext(SubAccountContext)
     return <SubAccountForm 
-    onSubmit={(subAcct, subDesc, subGroup, active)=>addSubAccount(subAcct, subDesc, subGroup, active, () => navigation.navigate('SubAccountIndex'))}
+        onSubmit={(subAcct, subDesc, subGroup, active)=>addSubAccount(subAcct, subDesc, subGroup, active, () => navigation.navigate('SubAccountIndex'))}
     />
   
 }

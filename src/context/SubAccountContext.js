@@ -1,4 +1,5 @@
 import createDataContext from './createDataContext';
+import { navigate } from './../navigationRef';
 
 
 const dataReducer = (state, action) => {
@@ -18,8 +19,10 @@ const dataReducer = (state, action) => {
             })
         case 'delete_subaccount':
             return state.filter((data) => data.id !== action.payload)
+        case 'navigate':
+            return { errorMessage: '', token:'' };
         default:
-            return state
+            return state;
     }
 }
 
@@ -56,4 +59,9 @@ const deleteSubAccount = (dispatch) => {
     }
 }
 
-export const { Context, Provider } = createDataContext(dataReducer, { addSubAccount, editSubAccount, deleteSubAccount}, [])
+const openwindow = (dispatch) => {
+    // dispatch({ type: 'navigate'});
+    // navigate('SubAccountCreate');
+}
+
+export const { Context, Provider } = createDataContext(dataReducer, { addSubAccount, editSubAccount, deleteSubAccount, openwindow}, [])

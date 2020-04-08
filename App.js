@@ -1,10 +1,4 @@
 import React from 'react';
-// import {
-//   createAppContainer,
-//   createStackNavigator,
-//   createBottomTabNavigator,
-//   createSwitchNavigator
-// } from 'react-navigation';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -14,11 +8,16 @@ import SignupScreen from './src/screens/SignupScreen';
 import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
-import { Provider as AuthProvider } from './src/context/authContext';
+import { Provider as AuthProvider, Provider } from './src/context/authContext';
 import { setNavigator } from './src/navigationRef';
 import ResolvedAuthScreen from './src/screens/ResolvedAuthScreen';
 import { Provider as LocationProvider } from './src/context/LocationContext';
 
+import { Provider as DataProvider } from './src/context/SubAccountContext';
+import ShowScreen from './src/screens/crud/ShowScreen';
+import CreateScreen from './src/screens/crud/CreateScreen';
+import EditScreen from './src/screens/crud/EditScreen';
+import ReadScreen from './src/screens/crud/ReadScreen';
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolvedAuthScreen,
@@ -29,8 +28,13 @@ const switchNavigator = createSwitchNavigator({
   }),
   mainFlow: createBottomTabNavigator({
     trackListFlow: createStackNavigator({
-      TrackList: TrackListScreen,
-      TrackDetail: TrackDetailScreen,
+      SubAccountIndex : ReadScreen ,
+      SubAccountShow : ShowScreen,
+      SubAccountEdit : EditScreen,
+      SubAccountCreate : CreateScreen,
+      // TrackList: ReadScreen,
+      // TrackDetail: TrackDetailScreen,
+
     }),
     TrackCreate: TrackCreateScreen,
     Account: AccountScreen,
@@ -43,7 +47,9 @@ export default () => {
   return (
     <LocationProvider>
       <AuthProvider>
-        <App ref ={ navigator => { setNavigator(navigator); }}/>
+        <DataProvider>
+          <App ref ={ navigator => { setNavigator(navigator); }}/>
+        </DataProvider>
       </AuthProvider>
     </LocationProvider>
   );

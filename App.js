@@ -17,6 +17,7 @@ import TrackListScreen from './src/screens/TrackListScreen';
 import { Provider as AuthProvider } from './src/context/authContext';
 import { setNavigator } from './src/navigationRef';
 import ResolvedAuthScreen from './src/screens/ResolvedAuthScreen';
+import MainScreen from './src/screens/MainScreen';
 import { Provider as LocationProvider } from './src/context/LocationContext';
 
 
@@ -27,6 +28,7 @@ const switchNavigator = createSwitchNavigator({
     Signup: SignupScreen,
     
   }),
+  MainS: MainScreen,
   mainFlow: createBottomTabNavigator({
     trackListFlow: createStackNavigator({
       TrackList: TrackListScreen,

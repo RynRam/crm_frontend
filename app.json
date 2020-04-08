@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "tracks",
-    "slug": "tracks",
+    "name": "Helix React",
+    "slug": "helixreact",
+    "icon": "./helix.png",
+    "version": "1.0.0",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -22,7 +22,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.helix.helixreact",
+      "supportsTablet": true,
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.helix.helixreact",
+      "versionCode": 1
     }
   }
 }

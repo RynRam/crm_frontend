@@ -69,7 +69,7 @@ const signin = dispatch =>  async ({ ip, database, email, password }, callback) 
 const signout = (dispatch) => async  ({ email, password }) => {
     await AsyncStorage.removeItem('token');
     dispatch({ type: 'signout'});
-    navigate('loginFlow');
+    navigate('Signin');
 };
 
 

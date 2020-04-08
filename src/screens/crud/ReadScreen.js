@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
 import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { Context as SubAccountContext } from '../../context/SubAccountContext'
-import { Feather } from '@expo/vector-icons'
+import { Context as SubAccountContext } from '../../context/SubAccountContext';
+import { Feather } from '@expo/vector-icons';
+
+//const globalOpenWindow = null;
+
 const ReadScreen = ({ navigation }) => {
     const { state, deleteSubAccount } = useContext(SubAccountContext)
     return (
@@ -30,12 +33,13 @@ const ReadScreen = ({ navigation }) => {
 }
 
 ReadScreen.navigationOptions = ({ navigation }) => {
- return {
+    // const { openwindow } = useContext(SubAccountContext);
+    return {
      headerRight: () => (
         <TouchableOpacity onPress={() => navigation.navigate('SubAccountCreate')}>
             <Feather name="plus" size={30} />
         </TouchableOpacity>
-     ) 
+    ) 
  }
 }
 

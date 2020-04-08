@@ -18,15 +18,17 @@ import { Provider as AuthProvider } from './src/context/authContext';
 import { setNavigator } from './src/navigationRef';
 import ResolvedAuthScreen from './src/screens/ResolvedAuthScreen';
 import MainScreen from './src/screens/MainScreen';
+import CreateScreen from './src/screens/crud/CreateScreen';
 import { Provider as LocationProvider } from './src/context/LocationContext';
+import { Provider as SubAccountProvider } from './src/context/SubAccountContext';
 
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolvedAuthScreen,
   loginFlow: createStackNavigator({
-    Signin: SigninScreen,
     Signup: SignupScreen,
-    
+    Signin: SigninScreen,
+    SubAccountCreate: CreateScreen
   }),
   MainS: MainScreen,
   mainFlow: createBottomTabNavigator({
@@ -45,7 +47,9 @@ export default () => {
   return (
     <LocationProvider>
       <AuthProvider>
-        <App ref ={ navigator => { setNavigator(navigator); }}/>
+        <SubAccountProvider>
+          <App ref ={ navigator => { setNavigator(navigator); }}/>
+        </SubAccountProvider>
       </AuthProvider>
     </LocationProvider>
   );

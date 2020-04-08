@@ -17,6 +17,8 @@ import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createStackNavigator} from 'react-navigation-stack';
 import Account from './screens/AccountScreen';
 import DashBoards from './screens/DashBoardsScreen';
+import  ReadScreen from './screens/crud/ReadScreen';
+import CreateScreen from './screens/crud/CreateScreen';
 // import Screen3 from './pages/Screen3';
 
 const color = '#9acd32';
@@ -69,16 +71,34 @@ const Account_StackNavigator = createStackNavigator({
       headerStyle: {
         backgroundColor: color,
       },
-      headerTintColor: '#fff',
+      headerTintColor: '#fff'
     }),
   },
 });
+
+const ReadScreen_StackNavigator = createStackNavigator({
+  //All the screen from the Screen2 will be indexed here
+  Third: {
+    screen: ReadScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'SubAccount',
+      headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: color,
+      },
+      headerTintColor: '#fff'
+    })
+  }
+},);
+
+
 
 const DrawerNavigatorExample = createDrawerNavigator({
   //Drawer Optons and indexing
   DashBoards: {
     //Title
     screen: DashBoards_StackNavigator,
+
     navigationOptions: {
       drawerLabel: 'Dash Board'
     }
@@ -88,8 +108,18 @@ const DrawerNavigatorExample = createDrawerNavigator({
     screen: Account_StackNavigator,
     navigationOptions: {
       drawerLabel: 'Account',
+    }
+  }
+  ,
+  ReadScreen: {
+    //Title
+    screen: ReadScreen_StackNavigator,
+    navigationOptions: {
+      drawerLabel: 'Sub Account',
     },
   }
 });
+
+
 
 export default createAppContainer(DrawerNavigatorExample);
